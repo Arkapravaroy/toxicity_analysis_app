@@ -211,14 +211,25 @@ def main():
             "You're an idiot if you believe this.",
             "I hate people like you, you should disappear."
         ]
+        example_labels = [
+            "✅ Positive Comment",
+            "💬 Neutral Disagreement", 
+            "⚠️ Harsh Criticism",
+            "🔥 Personal Attack",
+            "🚫 Hate Speech"
+        ]
+        
+        for i, (label, example) in enumerate(zip(example_labels, example_texts)):
+            if st.button(label, key=f"ex_{i}", use_container_width=True):
+                st.session_state['example_text'] = example
 
         # for i, example in enumerate(example_texts):
         #     if st.button(f"Example {i+1}", key=f"ex_{i}", use_container_width=True):
         #         st.session_state['example_text'] = example
-        for i, example in enumerate(EXAMPLE_TEXTS):
-            label = f"{example['label']}"  # or add emojis: f"📝 {example['label']}"
-            if st.button(label, key=f"ex_{i}", use_container_width=True):
-                st.session_state['example_text'] = example['text']
+        # for i, example in enumerate(EXAMPLE_TEXTS):
+        #     label = f"{example['label']}"  # or add emojis: f"📝 {example['label']}"
+        #     if st.button(label, key=f"ex_{i}", use_container_width=True):
+        #         st.session_state['example_text'] = example['text']
 
         # Display selected example
         if 'example_text' in st.session_state:
