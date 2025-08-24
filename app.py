@@ -16,6 +16,7 @@ from datetime import datetime
 import time
 
 # Custom imports
+from config.config import EXAMPLE_TEXTS
 from models.toxic_classifier import ToxicClassifier
 from utils.text_preprocessing import preprocess_text
 from utils.visualization import create_toxicity_chart, create_radar_chart
@@ -211,9 +212,13 @@ def main():
             "I hate people like you, you should disappear."
         ]
 
-        for i, example in enumerate(example_texts):
-            if st.button(f"Example {i+1}", key=f"ex_{i}", use_container_width=True):
-                st.session_state['example_text'] = example
+        # for i, example in enumerate(example_texts):
+        #     if st.button(f"Example {i+1}", key=f"ex_{i}", use_container_width=True):
+        #         st.session_state['example_text'] = example
+        for i, example in enumerate(EXAMPLE_TEXTS):
+            label = f"{example['label']}"  # or add emojis: f"📝 {example['label']}"
+            if st.button(label, key=f"ex_{i}", use_container_width=True):
+                st.session_state['example_text'] = example['text']
 
         # Display selected example
         if 'example_text' in st.session_state:
